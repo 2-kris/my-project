@@ -38,6 +38,8 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
-              docker build -t docker.io/2kris/my-project:latest .
-              docker push docker.io/2kris/my-project:latest
+              SHA_TAG=${GITHUB_SHA::7}
+              echo "Building Docker image with tag:$SHA_TAG"
+              docker build -t docker.io/2kris/my-project:$SHA_TAG .
+              docker push docker.io/2kris/my-project:$SHA_TAG
          
